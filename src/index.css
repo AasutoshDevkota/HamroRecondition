@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #182a40;
+  background: #fff;
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+button, input, select { font: inherit; }
+::selection { background: #e51f35; color: #fff; }
+
+@layer components {
+  .container-site { @apply mx-auto w-[92%] max-w-[1180px]; }
+  .section-title { @apply text-[18px] font-extrabold tracking-tight text-brand-ink sm:text-[20px]; }
+  .section-kicker { @apply mb-2 h-[3px] w-6 bg-brand-red; }
+  .card { @apply rounded-lg border border-slate-200 bg-white; }
+}
