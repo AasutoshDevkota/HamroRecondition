@@ -21,12 +21,12 @@ export default function LatestListings({ onNotify }) {
             onClick={() => onNotify("Sell your bike clicked")}
             className="rounded-md bg-brand-red px-4 py-2 text-[9px] font-bold text-white"
           >
-            Sell Your Bike →
+            Sell Your Bike 
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5 min-[1920px]:grid-cols-6">
         {latestListings.map(([name, year, km, price], index) => (
           <div key={name} className="card overflow-hidden">
             <img

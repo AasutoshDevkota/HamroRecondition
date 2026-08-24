@@ -5,6 +5,7 @@ import CategorySection from "./components/CategorySection";
 import FeaturedListings from "./components/FeaturedListings";
 import WhyChooseUs from "./components/WhyChooseUs";
 import LatestListings from "./components/LatestListings";
+import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
 import { bikes } from "./data/bikes";
@@ -76,8 +77,9 @@ export default function App() {
         <WhyChooseUs onNotify={notify} />
 
         <LatestListings onNotify={notify} />
+      <Testimonials/>
       </main>
-
+        
       <Footer />
       <Toast message={toast} />
     </div>
