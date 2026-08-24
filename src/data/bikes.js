@@ -2,19 +2,16 @@ export const image = (id, width = 900) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${width}&q=82`;
 
 export const categoryImages = [
-  "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1558981285-6f0c94958bb6?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1529429617124-95b109e86bb8?auto=format&fit=crop&w=500&q=80",
-  "https://images.unsplash.com/photo-1558980664-10ea20f79c48?auto=format&fit=crop&w=500&q=80"
+  "/all-categories.png",
+  "/scooter-category.png",
+  "/bike-category.png",
+  "/all-categories.png"
 ];
 
 export const categories = [
-  ["All Bikes & Scooters", "120+ Listings", "All"],
+  ["All Two Wheelers", "120+ Listings", "All"],
   ["Scooters", "45+ Listings", "Scooters"],
-  ["Sports Bikes", "28+ Listings", "Sports Bikes"],
-  ["Commuter Bikes", "32+ Listings", "Commuter Bikes"],
-  ["Premium / Imported", "12+ Listings", "Premium / Imported"]
+  ["Motorcycles", "28+ Listings", "Sports Bikes"],
 ];
 
 export const bikes = [

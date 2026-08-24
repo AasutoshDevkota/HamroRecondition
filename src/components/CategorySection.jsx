@@ -8,7 +8,7 @@ export default function CategorySection({ activeCategory, onCategoryChange, onNo
         <div>
           <div className="section-kicker" />
           <h2 className="section-title">Explore by Category</h2>
-          <p className="mt-1 text-[10px] text-slate-500">
+          <p className="mt-1 text-[14px] text-slate-500">
             Find your perfect ride from our wide range of reconditioned bikes and scooters.
           </p>
         </div>
@@ -16,7 +16,7 @@ export default function CategorySection({ activeCategory, onCategoryChange, onNo
           onClick={() => onNotify("Showing all categories")}
           className="hidden items-center gap-1 text-[10px] font-bold text-brand-red sm:flex"
         >
-          View All Categories <ChevronRight size={13} />
+          View All Categories <ChevronRight size={16} />
         </button>
       </div>
 

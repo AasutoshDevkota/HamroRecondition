@@ -45,7 +45,7 @@ export default function Hero({ onBrowse, onSell }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-bold tracking-[.14em] text-slate-700 ">
               <span className="flex h-5 w-5 items-center justify-center rounded-full  text-red-600 ">
-                <ShieldCheck className="h-3 w-3" strokeWidth={3} />
+                <ShieldCheck className="h-4 w-4" strokeWidth={3} />
               </span>
               TRUSTED. VERIFIED. RELIABLE.
             </div>
@@ -106,7 +106,7 @@ export default function Hero({ onBrowse, onSell }) {
                       className="h-8 w-8 rounded-full border-2 border-white object-cover"
                     />
                   ))}
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-brand-red text-[9px] font-bold text-white">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-brand-red text-[11px] font-bold text-white">
                     1K+
                   </span>
                 </div>
@@ -129,8 +129,8 @@ export default function Hero({ onBrowse, onSell }) {
           <div className="mt-5 grid grid-cols-2 gap-6 rounded-2xl border border-slate-200 bg-white/95 px-6 py-6 backdrop-blur-sm sm:grid-cols-4 sm:gap-4">
             {FEATURES.map(({ icon: Icon, title, subtitle }) => (
               <div key={title} className="flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
-                  <Icon className="h-5 w-5" strokeWidth={2} />
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-red/0 text-brand-red">
+                  <Icon className="h-6 w-6" strokeWidth={2} />
                 </span>
                 <div>
                   <p className="text-[13px] font-bold text-brand-ink">{title}</p>

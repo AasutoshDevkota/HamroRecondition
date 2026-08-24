@@ -11,7 +11,7 @@ export default function Header({ onNotify }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
-      <div className="container-site flex h-[68px] items-center justify-between">
+       <div className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between px-6 sm:px-10">
         <Logo />
 
         <nav className="hidden items-center gap-10 text-[14px] font-medium text-slate-600 lg:flex">
