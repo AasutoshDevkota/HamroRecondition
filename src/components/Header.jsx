@@ -26,25 +26,23 @@ export default function Header({ onNotify }) {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-5 md:flex">
-          {/* <button className="flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-[10px] font-semibold text-slate-600">
-            <MapPin size={13} fill="currentColor" />
-            Kathmandu
-            <ChevronDown size={12} />
-          </button> */}
-          <Search size={17} />
-          <Heart size={17} />
-          <button
-            onClick={() => onNotify("Login / Register clicked")}
-            className="rounded-md bg-brand-red px-4 py-2.5 text-[13px] font-bold text-white"
-          >
-            Login / Register
-          </button>
-        </div>
+        <div className="flex items-center gap-4">
+  <div className="hidden items-center gap-5 md:flex">
+    <Search size={17} />
+    <Heart size={17} />
+  </div>
 
-        <button className="lg:hidden" onClick={() => setMobile(!mobile)}>
-          {mobile ? <X /> : <Menu />}
-        </button>
+  <button
+    onClick={() => onNotify("Login / Register clicked")}
+    className="rounded-md bg-brand-red px-4 py-2.5 text-[13px] font-bold text-white"
+  >
+    Login / Register
+  </button>
+
+  <button className="lg:hidden" onClick={() => setMobile(!mobile)}>
+    {mobile ? <X /> : <Menu />}
+  </button>
+</div>
       </div>
 
       {mobile && (
