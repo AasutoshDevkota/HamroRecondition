@@ -51,7 +51,7 @@ export default function Testimonials() {
           <button
             onClick={prev}
             aria-label="Previous testimonial"
-            className="absolute left-0 hidden h-9 w-9 items-center justify-center rounded-full text-slate-300 transition hover:text-brand-red sm:flex"
+            className="absolute -left-10 hidden h-9 w-9 items-center justify-center rounded-full text-slate-300 transition hover:text-brand-red sm:flex"
           >
             <ChevronLeft className="h-6 w-6" strokeWidth={2} />
           </button>
@@ -94,7 +94,7 @@ export default function Testimonials() {
           <button
             onClick={next}
             aria-label="Next testimonial"
-            className="absolute right-0 hidden h-9 w-9 items-center justify-center rounded-full text-slate-300 transition hover:text-brand-red sm:flex"
+            className="absolute -right-10 hidden h-9 w-9 items-center justify-center rounded-full text-slate-300 transition hover:text-brand-red sm:flex"
           >
             <ChevronRight className="h-6 w-6" strokeWidth={2} />
           </button>

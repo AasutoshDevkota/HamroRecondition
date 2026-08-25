@@ -33,10 +33,19 @@ export default function Hero({ onBrowse, onSell }) {
   return (
     <section className="relative overflow-hidden bg-white">
       <div className="relative mx-auto max-w-[1400px] px-6 pb-8 pt-6 sm:px-10">
-        {/* Background photo */}
-        <div className="absolute inset-0 overflow-hidden ">
-          <div className="absolute inset-0 bg-[url('/bg-image.png')] bg-cover bg-[position:70%_30%]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/10 to-white/5" />
+                    {/* Background photo — different image per breakpoint via <picture> */}
+        <div className="absolute inset-0 overflow-hidden">
+                    <picture className="absolute inset-0 h-full w-full">
+            <source media="(min-width: 1280px)" srcSet="/bg-image.png" />
+            <source media="(min-width: 1024px)" srcSet="/demo2.png" />
+            <source media="(min-width: 640px)" srcSet="/demo2.png" />
+            <img
+  src="/bg-image-mobile.png"
+  alt=""
+  className="h-full w-full object-cover object-[75%_30%] sm:object-right-top lg:object-[70%_30%]"
+/>
+          </picture>
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10 sm:via-white/70 sm:to-white/5" />
         </div>
 
         {/* Content — explicit stacking layer, always painted above the background */}
@@ -60,19 +69,19 @@ export default function Hero({ onBrowse, onSell }) {
             </div>
           </div>
 
-          {/* Headline */}
-          <div className="mt-10 max-w-[640px] sm:mt-1">
-            <h1 className="text-[44px] font-extrabold uppercase leading-[1.25] tracking-tight text-brand-ink sm:text-[58px]">
-             Buy &amp; Sell
-             <br />
-             <span className="text-brand-red">Second Hand</span>
-             <br />
-             Bikes &amp; Scooters
+           {/* Headline */}
+          <div className="mt-4 max-w-[85%] sm:mt-6 sm:max-w-[75%] lg:max-w-[520px] xl:max-w-[640px]">
+            <h1 className="text-[30px] font-extrabold uppercase leading-[1.2] tracking-tight text-brand-ink sm:text-[44px] lg:text-[48px] xl:text-[58px]">
+              Buy &amp; Sell
+              <br />
+              <span className="text-brand-red">Second Hand</span>
+              <br />
+              Bikes &amp; Scooters
             </h1>
 
             <span className="mt-5 block h-1 w-16 rounded-full bg-brand-red" />
 
-            <p className="mt-5 max-w-[420px] text-[15px] leading-6 text-slate-500">
+            <p className="mt-5 max-w-[260px] text-[13px] leading-6 text-slate-500 sm:max-w-[380px] sm:text-[15px]">
               Find the best deals on quality used bikes and scooters in Nepal.
             </p>
 
@@ -125,8 +134,8 @@ export default function Hero({ onBrowse, onSell }) {
             </div>
           </div>
 
-          {/* Feature strip */}
-          <div className="mt-5 grid grid-cols-2 gap-6 rounded-2xl border border-slate-200 bg-white/95 px-6 py-6 backdrop-blur-sm sm:grid-cols-4 sm:gap-4">
+                  {/* Feature strip */}
+<div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 rounded-2xl border border-slate-200 bg-white/95 px-6 py-6 backdrop-blur-sm sm:gap-6 lg:grid-cols-4 lg:gap-4">
             {FEATURES.map(({ icon: Icon, title, subtitle }) => (
               <div key={title} className="flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-red/0 text-brand-red">

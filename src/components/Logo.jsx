@@ -8,7 +8,7 @@ export default function Logo() {
         <Bike size={24} className="relative text-brand-red" />
       </div>
       <div className="leading-none">
-        <div className="text-[11px] font-extrabold text-brand-ink">
+        <div className="text-[11px] font-extrabold text-brand-">
           RECONDITION HOUSE
         </div>
         <div className="mt-1 text-[11px] font-extrabold tracking-[.2em] text-brand-red">
