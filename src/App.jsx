@@ -9,6 +9,7 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
 import { bikes } from "./data/bikes";
+import WhatsAppButton from "./components/Whatsappbutton";
 
 export default function App() {
   const [searchValues, setSearchValues] = useState({
@@ -81,6 +82,7 @@ export default function App() {
       </main>
         
       <Footer />
+      <WhatsAppButton/>
       <Toast message={toast} />
     </div>
   );
