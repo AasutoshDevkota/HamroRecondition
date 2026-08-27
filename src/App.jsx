@@ -10,9 +10,36 @@ import Sell from "./pages/Sell";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import BikeDetail from "./pages/BikeDetail";
-import { useState } from "react";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import AdminLayout from "./admin/AdminLayout";
+import Dashboard from "./admin/pages/Dashboard";
+import Listings from "./admin/pages/Listings";
+import Messages from "./admin/pages/Messages";
+import Settings from "./admin/pages/Settings";
+import Users from "./admin/pages/Users";
+import Reports from "./admin/pages/Reports";
+import { useState } from "react";
+
+function PublicSite({ notify }) {
+  return (
+    <>
+      <Header onNotify={notify} />
+      <Routes>
+        <Route path="/" element={<Home onNotify={notify} />} />
+        <Route path="/buy" element={<Buy />} />
+        <Route path="/buy/:id" element={<BikeDetail onNotify={notify} />} />
+        <Route path="/sell" element={<Sell />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      </Routes>
+      <Footer />
+      <WhatsAppButton />
+    </>
+  );
+}
 
 export default function App() {
   const [toast, setToast] = useState("");
@@ -26,21 +53,21 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <ScrollToTop />
-      <Header onNotify={notify} />
 
       <Routes>
-        <Route path="/" element={<Home onNotify={notify} />} />
-        <Route path="/buy" element={<Buy />} />
-        <Route path="/buy/:id" element={<BikeDetail onNotify={notify} />} />
-        <Route path="/sell" element={<Sell />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="listings" element={<Listings/>}/>
+          <Route path="messages" element={<Messages/>}/>
+          <Route path="users" element= {<Users/>} />
+          <Route path="reports" element= {<Reports/> } />
+          <Route path="settings" element={<Settings />} />
+
+        </Route>
+
+        <Route path="/*" element={<PublicSite notify={notify} />} />
       </Routes>
 
-      <Footer />
-      <WhatsAppButton />
       <Toast message={toast} />
     </div>
   );

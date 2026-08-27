@@ -7,19 +7,19 @@ export default function LatestListings({ onNotify }) {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <div className="section-kicker" />
-          <h2 className="section-title">Latest Listings</h2>
-          <p className="mt-1 text-[10px] text-slate-500">New bikes and scooters added recently.</p>
+          <h2 className="section-title text-[20px]">Latest Listings</h2>
+          <p className="mt-1 text-[12px] text-slate-500">New bikes and scooters added recently.</p>
         </div>
 
         <div className="hidden items-center gap-4 rounded-lg bg-slate-50 px-4 py-3 md:flex">
           <Handshake size={22} />
           <div>
-            <div className="text-[10px] font-bold">Want to Sell Your Bike?</div>
-            <div className="text-[9px] text-slate-400">Get the best price. Quick and easy process.</div>
+            <div className="text-[12px] font-bold">Want to Sell Your Bike?</div>
+            <div className="text-[10px] text-slate-400">Get the best price. Quick and easy process.</div>
           </div>
           <button
             onClick={() => onNotify("Sell your bike clicked")}
-            className="rounded-md bg-brand-red px-4 py-2 text-[9px] font-bold text-white"
+            className="rounded-md bg-brand-red px-4 py-2 text-[12px] font-bold text-white"
           >
             Sell Your Bike 
           </button>
