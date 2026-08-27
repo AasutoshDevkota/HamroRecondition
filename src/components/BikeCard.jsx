@@ -1,6 +1,14 @@
 import { Heart, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function BikeCard({ bike, favorite, onFavorite, onClick }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (onClick) onClick();
+    navigate(`/buy/${bike.id}`);
+  };
+
   return (
     <div className="card overflow-hidden transition hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(20,37,58,.08)]">
       <div className="relative h-28 bg-slate-100">
@@ -9,7 +17,10 @@ export default function BikeCard({ bike, favorite, onFavorite, onClick }) {
           {bike.tag}
         </span>
         <button
-          onClick={onFavorite}
+          onClick={(e) => {
+            e.stopPropagation();
+            onFavorite();
+          }}
           className="absolute right-2 top-2 rounded-full bg-white/90 p-1.5 shadow"
           aria-label={`Favorite ${bike.name}`}
         >
@@ -21,7 +32,7 @@ export default function BikeCard({ bike, favorite, onFavorite, onClick }) {
         </button>
       </div>
 
-      <button onClick={onClick} className="w-full p-3 text-left">
+      <button onClick={handleClick} className="w-full p-3 text-left">
         <div className="text-[10px] font-bold">{bike.name}</div>
         <div className="mt-1 text-[8px] text-slate-400">
           {bike.year} • {bike.km} • Reconditioned
