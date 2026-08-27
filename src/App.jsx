@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
 import WhatsAppButton from "./components/Whatsappbutton";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Buy from "./pages/Buy";
 import Sell from "./pages/Sell";
@@ -10,6 +11,8 @@ import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import BikeDetail from "./pages/BikeDetail";
 import { useState } from "react";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 export default function App() {
   const [toast, setToast] = useState("");
@@ -22,6 +25,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      <ScrollToTop />
       <Header onNotify={notify} />
 
       <Routes>
@@ -31,6 +35,8 @@ export default function App() {
         <Route path="/sell" element={<Sell />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
 
       <Footer />

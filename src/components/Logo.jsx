@@ -1,8 +1,9 @@
 import { Bike } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Logo() {
   return (
-    <div className="flex items-center gap-2.5">
+    <Link to="/" className="flex items-center gap-2.5">
       <div className="relative flex h-9 w-10 items-center justify-center">
         <div className="absolute inset-0 rounded-tl-xl border-[2.5px] border-brand-red border-b-0 rotate-[-4deg]" />
         <Bike size={24} className="relative text-brand-red" />
@@ -15,6 +16,6 @@ export default function Logo() {
           NEPAL
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
