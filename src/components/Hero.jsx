@@ -45,7 +45,7 @@ export default function Hero({ onBrowse, onSell }) {
   className="h-full w-full object-cover object-[75%_30%] sm:object-right-top lg:object-[70%_30%]"
 />
           </picture>
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10 sm:via-white/70 sm:to-white/5" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white from-10% via-white/90 via-50% to-white/10 sm:via-white/85 sm:to-white/5" />
         </div>
 
         {/* Content — explicit stacking layer, always painted above the background */}

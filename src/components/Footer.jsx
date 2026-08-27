@@ -1,13 +1,16 @@
+// src/components/Footer.jsx
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Youtube, Music2 } from "lucide-react";
+import {
+  Facebook, Instagram, Youtube, Music2
+} from "lucide-react";
 import Logo from "./Logo";
 import FooterColumn from "./FooterColumn";
 
 export default function Footer() {
   return (
     <footer className="bg-[#000000] py-8 text-slate-300">
-      <div className="container-site grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
+      <div className="container-site grid grid-cols-2 gap-8 lg:grid-cols-4">
+        <div className="col-span-2 lg:col-span-1">
           <Logo />
           <p className="mt-4 text-[14px]">Better Rides. Brighter Journeys.</p>
           <div className="mt-3 flex gap-2">
@@ -17,16 +20,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <FooterColumn
-          title="Quick Links"
-          links={["Buy", "Sell", "About Us", "Contact"]}
-        />
-        <FooterColumn
-          title="Categories"
-          links={["All Vehicles", "Motorcycles", "Scooters"]}
-        />
+        <FooterColumn title="Quick Links" links={["Buy", "Sell", "About Us", "Contact"]} />
+        <FooterColumn title="Categories" links={["All Vehicles", "Motorcycles", "Scooters"]} />
 
-        <div>
+        <div className="col-span-2 lg:col-span-1">
           <h3 className="text-[14px] font-bold text-white">Contact Us</h3>
           <div className="mt-3 space-y-2 text-[14px]">
             <p>Kathmandu, Nepal</p>
@@ -36,8 +33,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="container-site mt-7 grid grid-cols-1 items-center gap-2 border-t border-white/10 pt-4 text-[12px] sm:grid-cols-3">
-        <span className="text-left">
+      <div className="container-site mt-7 flex flex-col items-center gap-3 border-t border-white/10 pt-4 text-[12px] sm:grid sm:grid-cols-3 sm:items-center sm:gap-2">
+        <span className="text-center sm:text-left">
           © 2026 Recondition House Nepal. All rights reserved.
         </span>
 
@@ -53,17 +50,11 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="flex justify-end gap-6">
-          <Link
-            to="/privacy-policy"
-            className="text-white/70 hover:text-white transition-colors"
-          >
+        <div className="flex justify-center gap-6 sm:justify-end">
+          <Link to="/privacy-policy" className="text-white/70 hover:text-white transition-colors">
             Privacy Policy
           </Link>
-          <Link
-            to="/terms-and-conditions"
-            className="text-white/70 hover:text-white transition-colors"
-          >
+          <Link to="/terms-and-conditions" className="text-white/70 hover:text-white transition-colors">
             Terms & Conditions
           </Link>
         </div>
