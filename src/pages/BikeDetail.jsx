@@ -217,7 +217,9 @@ export default function BikeDetail({ onNotify }) {
                 className="flex items-center justify-center gap-2 rounded-md border border-gray-200 py-3 text-sm font-bold text-slate-800 transition-colors hover:bg-gray-50"
               >
                 <MessageCircle size={15} />
+                <a href="./messages">
                 Chat with Seller
+                </a>
               </button>
             </div>
 

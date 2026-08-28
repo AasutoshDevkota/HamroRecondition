@@ -1,8 +1,16 @@
 // src/pages/AboutUs.jsx
 import { Link } from "react-router-dom";
 import {
-  ShieldCheck,Tag,Users,Headphones,Bike,
-  UsersRound,BadgeCheck,Handshake,ArrowRight,TrendingUp,
+  ShieldCheck,
+  Tag,
+  Users,
+  Headphones,
+  Bike,
+  UsersRound,
+  BadgeCheck,
+  Handshake,
+  ArrowRight,
+  TrendingUp,
 } from "lucide-react";
 
 export default function AboutUs() {
@@ -11,7 +19,7 @@ export default function AboutUs() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-80"
+          className="absolute inset-0 hidden bg-cover bg-center opacity-80 min-[426px]:block"
           style={{ backgroundImage: "url('/bg-image.png')" }}
         />
         <div className="absolute inset-0 bg-white/70" />
@@ -29,10 +37,9 @@ export default function AboutUs() {
             <div className="mt-4 h-1 w-24 bg-red-500" />
 
             <p className="mt-5 max-w-md text-gray-600">
-              Recondition House Nepal is Nepal's trusted platform for buying
-              and selling quality used bikes and scooters. We make
-              second-hand better — through inspection, transparency, and
-              reliable service.
+              Recondition House Nepal is Nepal's trusted platform for buying and
+              selling quality used bikes and scooters. We make second-hand
+              better — through inspection, transparency, and reliable service.
             </p>
 
             <Link
@@ -70,14 +77,14 @@ export default function AboutUs() {
               second-hand bikes and scooters in Nepal.
             </p>
             <p className="mt-4 text-gray-600">
-              We understand the challenges buyers face and the trust it
-              takes to sell your vehicle. That's why we built a platform
-              where every bike is carefully inspected, fairly priced, and
-              backed by genuine support.
+              We understand the challenges buyers face and the trust it takes to
+              sell your vehicle. That's why we built a platform where every bike
+              is carefully inspected, fairly priced, and backed by genuine
+              support.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-2">
             <StoryCard
               icon={<ShieldCheck className="h-6 w-6 text-red-500" />}
               title="Trusted Inspections"

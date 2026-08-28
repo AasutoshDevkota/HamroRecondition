@@ -1,8 +1,6 @@
 // src/components/Footer.jsx
 import { Link } from "react-router-dom";
-import {
-  Facebook, Instagram, Youtube, Music2
-} from "lucide-react";
+import { Facebook, Instagram, Youtube, Music2 } from "lucide-react";
 import Logo from "./Logo";
 import FooterColumn from "./FooterColumn";
 
@@ -20,8 +18,23 @@ export default function Footer() {
           </div>
         </div>
 
-        <FooterColumn title="Quick Links" links={["Buy", "Sell", "About Us", "Contact"]} />
-        <FooterColumn title="Categories" links={["All Vehicles", "Motorcycles", "Scooters"]} />
+        <FooterColumn
+          title="Quick Links"
+          links={[
+            { label: "Buy", to: "/buy" },
+            { label: "Sell", to: "/sell" },
+            { label: "About Us", to: "/about-us" },
+            { label: "Contact", to: "/contact" },
+          ]}
+        />
+        <FooterColumn
+          title="Categories"
+          links={[
+            { label: "All Vehicles", to: "/buy" },
+            { label: "Motorcycles", to: "/buy?type=motorcycle" },
+            { label: "Scooters", to: "/buy?type=scooter" },
+          ]}
+        />
 
         <div className="col-span-2 lg:col-span-1">
           <h3 className="text-[14px] font-bold text-white">Contact Us</h3>
@@ -51,10 +64,16 @@ export default function Footer() {
         </div>
 
         <div className="flex justify-center gap-6 sm:justify-end">
-          <Link to="/privacy-policy" className="text-white/70 hover:text-white transition-colors">
+          <Link
+            to="/privacy-policy"
+            className="text-white/70 hover:text-white transition-colors"
+          >
             Privacy Policy
           </Link>
-          <Link to="/terms-and-conditions" className="text-white/70 hover:text-white transition-colors">
+          <Link
+            to="/terms-and-conditions"
+            className="text-white/70 hover:text-white transition-colors"
+          >
             Terms & Conditions
           </Link>
         </div>

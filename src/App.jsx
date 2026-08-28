@@ -9,6 +9,8 @@ import Buy from "./pages/Buy";
 import Sell from "./pages/Sell";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
+import UserMessages from "./pages/Messages";
+import { MessagesProvider } from "./context/MessagesContext";
 import BikeDetail from "./pages/BikeDetail";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
@@ -24,6 +26,7 @@ import { useState } from "react";
 function PublicSite({ notify }) {
   return (
     <>
+    <MessagesProvider>
       <Header onNotify={notify} />
       <Routes>
         <Route path="/" element={<Home onNotify={notify} />} />
@@ -32,11 +35,13 @@ function PublicSite({ notify }) {
         <Route path="/sell" element={<Sell />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/messages" element={<UserMessages />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
       <Footer />
       <WhatsAppButton />
+    </MessagesProvider>
     </>
   );
 }

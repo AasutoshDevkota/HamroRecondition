@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  Search, Heart, UserRound, MapPin, ChevronDown, Menu, X
+  Search, Heart, UserRound, MapPin, ChevronDown, Menu, X, MessageCircle
 } from "lucide-react";
 import Logo from "./Logo";
+import { useMessages } from "../context/MessagesContext";
 
 export default function Header({ onNotify }) {
   const [mobile, setMobile] = useState(false);
+  const { unreadCount } = useMessages();
 
   const links = [
     { label: "Home", to: "/" },
@@ -40,6 +42,20 @@ export default function Header({ onNotify }) {
           <div className="hidden items-center gap-5 md:flex">
             <Search size={17} />
             <Heart size={17} />
+            <NavLink
+              to="/messages"
+              className={({ isActive }) =>
+                `relative ${isActive ? "text-brand-red" : "text-slate-600 hover:text-brand-red"}`
+              }
+              aria-label="Messages"
+            >
+              <MessageCircle size={17} />
+              {unreadCount > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-brand-red text-[10px] font-bold leading-none text-white">
+                  {unreadCount > 9 ? "9+" : unreadCount}
+                </span>
+              )}
+            </NavLink>
           </div>
 
           <button
@@ -72,6 +88,22 @@ export default function Header({ onNotify }) {
               {link.label}
             </NavLink>
           ))}
+          <NavLink
+            to="/messages"
+            onClick={() => setMobile(false)}
+            className={({ isActive }) =>
+              `flex items-center justify-between border-b py-3 text-sm font-semibold ${
+                isActive ? "text-brand-red" : ""
+              }`
+            }
+          >
+            <span>Messages</span>
+            {unreadCount > 0 && (
+              <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-red px-1 text-[11px] font-bold text-white">
+                {unreadCount > 9 ? "9+" : unreadCount}
+              </span>
+            )}
+          </NavLink>
           <button
             onClick={() => onNotify("Login / Register clicked")}
             className="mt-4 w-full rounded-md bg-brand-red py-3 text-[14px] font-bold text-white"
