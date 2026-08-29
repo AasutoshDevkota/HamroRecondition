@@ -21,12 +21,14 @@ import {
   Bike,
   Menu,
   X,
+  PlusCircle,
 } from "lucide-react";
 import Logo from "../components/Logo";
 
 const NAV_ITEMS = [
   { label: "Dashboard", icon: LayoutDashboard, to: "/admin" },
   { label: "Listings", icon: ListChecks, to: "/admin/listings" },
+  { label: "Add New Vehicle", icon: PlusCircle, to: "/admin/listings/add" },
 //   { label: "Buyers", icon: Users, to: "/admin/buyers" },
 //   { label: "Sellers", icon: UserCog, to: "/admin/sellers" },
   { label: "Messages", icon: MessageSquare, to: "/admin/messages" },

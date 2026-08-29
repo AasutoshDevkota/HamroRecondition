@@ -32,8 +32,8 @@ export default function CategorySection({ activeCategory, onCategoryChange, onNo
             <div className="h-24 overflow-hidden rounded-md bg-slate-100">
               <img src={categoryImages[index]} className="h-full w-full object-cover mix-blend-multiply transition group-hover:scale-105" alt="" />
             </div>
-            <div className="mt-2 text-[11px] font-bold">{name}</div>
-            <div className="mt-1 text-[9px] text-slate-400">{count}</div>
+            <div className="mt-2 text-[14px] font-bold">{name}</div>
+            <div className="mt-1 text-[12px] text-slate-400">{count}</div>
           </button>
         ))}
       </div>

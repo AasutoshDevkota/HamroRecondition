@@ -45,10 +45,10 @@ export default function WhyChooseUs() {
             />
           </svg>
 
-          <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-[280px_1fr]">
+          <div className="relative grid grid-cols-1 gap-10 xl:grid-cols-[280px_1fr]">
             {/* Left copy block */}
-            <div>
-              <h2 className="mt-2 text-[30px] font-extrabold leading-tight text-brand-ink sm:text-[34px]">
+            <div className="mx-auto">
+              <h2 className="mt-2 text-[30px] font-extrabold leading-tight text-brand-ink sm:text-[34px] ">
                 Why <span className="text-brand-red">Choose Us?</span>
               </h2>
               <span className="mt-4 block h-1 w-14 rounded-full bg-brand-red" />
@@ -59,9 +59,9 @@ export default function WhyChooseUs() {
             </div>
 
             {/* Feature columns */}
-            <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-slate-100">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 xl:grid-cols-5 xl:divide-x xl:divide-slate-100">
               {FEATURES.map(({ icon: Icon, title, description }) => (
-                <div key={title} className="text-center lg:px-5 lg:first:pl-0 lg:last:pr-0">
+                <div key={title} className="text-center xl:px-5 xl:first:pl-0 xl:last:pr-0">
                   <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-brand-red/10">
                     <Icon className="h-9 w-9 text-brand-red" strokeWidth={1.75} />
                   </div>

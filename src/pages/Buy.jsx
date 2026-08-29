@@ -11,6 +11,7 @@ import {
   ChevronRight,
   ChevronDown,
   RotateCcw,
+  X,
 } from "lucide-react";
 
 const CATEGORIES = [
@@ -144,6 +145,7 @@ export default function Buy() {
   const [view, setView] = useState("grid");
   const [favorites, setFavorites] = useState([]);
   const [page, setPage] = useState(1);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const toggleBrand = (brand) => {
     setSelectedBrands((current) =>
@@ -174,92 +176,123 @@ export default function Buy() {
     });
   }, [activeCategory, selectedBrands]);
 
+  const filtersContent = (
+    <>
+      <div className="mt-6 xl:mt-0">
+        <p className="mb-3 text-sm font-bold text-slate-900">Categories</p>
+        <div className="space-y-1">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat.label}
+              onClick={() => setActiveCategory(cat.label)}
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${
+                activeCategory === cat.label
+                  ? "bg-red-50 font-semibold text-red-500"
+                  : "text-gray-600 hover:bg-gray-50"
+              }`}
+            >
+              <span>{cat.label}</span>
+              <span>{cat.count}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-6 border-t border-gray-100 pt-6">
+        <p className="mb-3 text-sm font-bold text-slate-900">Price Range</p>
+        <input type="range" min="50000" max="800000" className="w-full accent-red-500" />
+        <div className="mt-1 flex justify-between text-xs text-gray-500">
+          <span>NPR 50,000</span>
+          <span>NPR 8,00,000+</span>
+        </div>
+      </div>
+
+      <div className="mt-6 border-t border-gray-100 pt-6">
+        <p className="mb-3 text-sm font-bold text-slate-900">Brand</p>
+        <div className="space-y-2">
+          {BRANDS.map((brand) => (
+            <label
+              key={brand.label}
+              className="flex items-center justify-between text-sm text-gray-600"
+            >
+              <span className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={selectedBrands.includes(brand.label)}
+                  onChange={() => toggleBrand(brand.label)}
+                  className="accent-red-500"
+                />
+                {brand.label}
+              </span>
+              <span>{brand.count}</span>
+            </label>
+          ))}
+        </div>
+        <button className="mt-3 flex items-center gap-1 text-sm font-semibold text-red-500">
+          View More <ChevronDown size={14} />
+        </button>
+      </div>
+
+      <div className="mt-6 border-t border-gray-100 pt-6">
+        <p className="mb-2 text-sm font-bold text-slate-900">Year</p>
+        <select className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-500 focus:border-red-400 focus:outline-none">
+          <option>Select Year</option>
+        </select>
+      </div>
+
+      <div className="mt-6 border-t border-gray-100 pt-6">
+        <p className="mb-2 text-sm font-bold text-slate-900">KM Driven</p>
+        <select className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-500 focus:border-red-400 focus:outline-none">
+          <option>Any KM</option>
+        </select>
+      </div>
+
+      <button
+        onClick={resetFilters}
+        className="mt-6 flex w-full items-center justify-center gap-2 rounded-md border border-red-500 py-2.5 text-sm font-semibold text-red-500 transition-colors hover:bg-red-50"
+      >
+        <RotateCcw size={15} />
+        Reset Filters
+      </button>
+    </>
+  );
+
   return (
-    <main className="container-site grid grid-cols-1 gap-8 py-10 lg:grid-cols-[280px_1fr]">
-      {/* Sidebar filters */}
-      <aside className="h-fit rounded-2xl border border-gray-100 p-6 shadow-sm">
+    <main className="container-site grid grid-cols-1 gap-8 py-10 xl:grid-cols-[280px_1fr]">
+      {/* Sidebar filters - desktop (xl and up) */}
+      <aside className="hidden h-fit rounded-2xl border border-gray-100 p-6 shadow-sm xl:block">
         <p className="flex items-center gap-2 font-bold text-slate-900">
           <SlidersHorizontal size={17} className="text-red-500" />
           FILTERS
         </p>
-
-        <div className="mt-6">
-          <p className="mb-3 text-sm font-bold text-slate-900">Categories</p>
-          <div className="space-y-1">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.label}
-                onClick={() => setActiveCategory(cat.label)}
-                className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${
-                  activeCategory === cat.label
-                    ? "bg-red-50 font-semibold text-red-500"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                <span>{cat.label}</span>
-                <span>{cat.count}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-6 border-t border-gray-100 pt-6">
-          <p className="mb-3 text-sm font-bold text-slate-900">Price Range</p>
-          <input type="range" min="50000" max="800000" className="w-full accent-red-500" />
-          <div className="mt-1 flex justify-between text-xs text-gray-500">
-            <span>NPR 50,000</span>
-            <span>NPR 8,00,000+</span>
-          </div>
-        </div>
-
-        <div className="mt-6 border-t border-gray-100 pt-6">
-          <p className="mb-3 text-sm font-bold text-slate-900">Brand</p>
-          <div className="space-y-2">
-            {BRANDS.map((brand) => (
-              <label
-                key={brand.label}
-                className="flex items-center justify-between text-sm text-gray-600"
-              >
-                <span className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={selectedBrands.includes(brand.label)}
-                    onChange={() => toggleBrand(brand.label)}
-                    className="accent-red-500"
-                  />
-                  {brand.label}
-                </span>
-                <span>{brand.count}</span>
-              </label>
-            ))}
-          </div>
-          <button className="mt-3 flex items-center gap-1 text-sm font-semibold text-red-500">
-            View More <ChevronDown size={14} />
-          </button>
-        </div>
-
-        <div className="mt-6 border-t border-gray-100 pt-6">
-          <p className="mb-2 text-sm font-bold text-slate-900">Year</p>
-          <select className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-500 focus:border-red-400 focus:outline-none">
-            <option>Select Year</option>
-          </select>
-        </div>
-
-        <div className="mt-6 border-t border-gray-100 pt-6">
-          <p className="mb-2 text-sm font-bold text-slate-900">KM Driven</p>
-          <select className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-500 focus:border-red-400 focus:outline-none">
-            <option>Any KM</option>
-          </select>
-        </div>
-
-        <button
-          onClick={resetFilters}
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-md border border-red-500 py-2.5 text-sm font-semibold text-red-500 transition-colors hover:bg-red-50"
-        >
-          <RotateCcw size={15} />
-          Reset Filters
-        </button>
+        {filtersContent}
       </aside>
+
+      {/* Filter drawer - below xl */}
+      {filtersOpen && (
+        <div className="fixed inset-0 z-50 xl:hidden">
+          <div
+            onClick={() => setFiltersOpen(false)}
+            className="absolute inset-0 bg-black/30"
+          />
+          <div className="absolute inset-y-0 left-0 w-[85%] max-w-sm overflow-y-auto bg-white p-6 shadow-xl">
+            <div className="flex items-center justify-between">
+              <p className="flex items-center gap-2 font-bold text-slate-900">
+                <SlidersHorizontal size={17} className="text-red-500" />
+                FILTERS
+              </p>
+              <button
+                onClick={() => setFiltersOpen(false)}
+                className="rounded-md p-1.5 text-slate-400 hover:bg-slate-50 hover:text-slate-600"
+                aria-label="Close filters"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            {filtersContent}
+          </div>
+        </div>
+      )}
 
       {/* Results */}
       <section>
@@ -269,6 +302,15 @@ export default function Buy() {
           </p>
 
           <div className="flex items-center gap-3">
+            {/* Small filter icon button - below xl only */}
+            <button
+              onClick={() => setFiltersOpen(true)}
+              className="flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 text-gray-600 hover:border-red-300 hover:text-red-500 xl:hidden"
+              aria-label="Open filters"
+            >
+              <SlidersHorizontal size={16} />
+            </button>
+
             <div className="relative">
               <select
                 value={sortBy}
@@ -295,7 +337,7 @@ export default function Buy() {
                 }`}
               >
                 <LayoutGrid size={15} />
-                Grid
+                <span className="hidden sm:inline">Grid</span>
               </button>
               <button
                 onClick={() => setView("list")}
@@ -306,7 +348,7 @@ export default function Buy() {
                 }`}
               >
                 <ListIcon size={15} />
-                List
+                <span className="hidden sm:inline">List</span>
               </button>
             </div>
           </div>

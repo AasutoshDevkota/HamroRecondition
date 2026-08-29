@@ -21,3 +21,6 @@ button, input, select { font: inherit; }
   .section-kicker { @apply mb-2 h-[3px] w-6 bg-brand-red; }
   .card { @apply rounded-lg border border-slate-200 bg-white; }
 }
+.input {
+  @apply w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-red;
+}

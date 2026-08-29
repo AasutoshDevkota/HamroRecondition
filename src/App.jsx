@@ -17,6 +17,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import AdminLayout from "./admin/AdminLayout";
 import Dashboard from "./admin/pages/Dashboard";
 import Listings from "./admin/pages/Listings";
+import AddVehicle from "./admin/pages/Addvehicle";
 import Messages from "./admin/pages/Messages";
 import Settings from "./admin/pages/Settings";
 import Users from "./admin/pages/Users";
@@ -63,6 +64,7 @@ export default function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="listings" element={<Listings/>}/>
+          <Route path="listings/add" element={<AddVehicle/>}/>
           <Route path="messages" element={<Messages/>}/>
           <Route path="users" element= {<Users/>} />
           <Route path="reports" element= {<Reports/> } />

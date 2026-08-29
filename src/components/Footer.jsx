@@ -54,7 +54,7 @@ export default function Footer() {
         <div className="text-center text-white/50">
           Developed by{" "}
           <a
-            href="https://craftbasestudio.com"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-white/70 hover:text-white transition-colors"

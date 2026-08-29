@@ -31,13 +31,13 @@ export default function LatestListings({ onNotify }) {
           <div key={name} className="card overflow-hidden">
             <img
               src={categoryImages[(index + 1) % categoryImages.length]}
-              className="h-28 w-full object-cover"
+              className="h-40 w-full object-cover sm:h-44"
               alt=""
             />
-            <div className="p-3">
-              <div className="text-[10px] font-bold">{name}</div>
-              <div className="mt-1 text-[9px] text-slate-400">{year} • {km}</div>
-              <div className="mt-1 text-[11px] font-extrabold text-brand-red">{price}</div>
+            <div className="p-4">
+              <div className="text-base font-bold text-slate-900">{name}</div>
+              <div className="mt-1 text-xs text-slate-400">{year} • {km}</div>
+              <div className="mt-2 text-xl font-extrabold text-brand-red">{price}</div>
             </div>
           </div>
         ))}

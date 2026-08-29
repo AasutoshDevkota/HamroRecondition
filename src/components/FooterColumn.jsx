@@ -9,7 +9,7 @@ export default function FooterColumn({ title, links }) {
           <li key={link.label}>
             <Link
               to={link.to}
-              className="text-sm text-gray-400 transition-colors hover:text-red-500"
+              className="text-sm text-gray-400 transition-colors hover:text-white"
             >
               {link.label}
             </Link>
