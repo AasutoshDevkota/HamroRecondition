@@ -33,6 +33,7 @@ const KPI_CARDS = [
     value: "1,248",
     change: "+12.5%",
     positive: true,
+    rounded: "rounded-3xl",
     bg: "bg-red-50",
     color: "text-brand-red",
   },

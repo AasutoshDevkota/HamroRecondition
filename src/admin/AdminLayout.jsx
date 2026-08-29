@@ -19,6 +19,8 @@ import {
   ChevronDown,
   HelpCircle,
   Bike,
+  Menu,
+  X,
 } from "lucide-react";
 import Logo from "../components/Logo";
 
@@ -38,10 +40,11 @@ const NAV_ITEMS = [
 
 export default function AdminLayout() {
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div className="flex min-h-screen bg-slate-50">
-      {/* Sidebar */}
+      {/* Sidebar - desktop (lg and up) */}
       <aside
         className={`hidden shrink-0 flex-col border-r border-slate-100 bg-white transition-all duration-200 lg:flex ${
           collapsed ? "w-20" : "w-64"
@@ -114,10 +117,80 @@ export default function AdminLayout() {
         </div>
       </aside>
 
+      {/* Sidebar - mobile drawer (below lg) */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-white transition-transform duration-200 lg:hidden ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex h-[68px] items-center justify-between border-b border-slate-100 px-5">
+          <Logo />
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="rounded-md p-1.5 text-slate-400 hover:bg-slate-50 hover:text-slate-600"
+            aria-label="Close menu"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+          {NAV_ITEMS.map(({ label, icon: Icon, to }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === "/admin"}
+              onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-red-50 text-brand-red"
+                    : "text-slate-600 hover:bg-slate-50"
+                }`
+              }
+            >
+              <Icon size={18} />
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="border-t border-slate-100 p-4">
+          <div className="rounded-xl bg-red-50 p-4">
+            <p className="flex items-center gap-2 text-sm font-bold text-slate-900">
+              <HelpCircle size={16} className="text-brand-red" />
+              Need Support?
+            </p>
+            <p className="mt-1 text-xs text-slate-500">
+              We're here to help you
+            </p>
+            <button className="mt-3 w-full rounded-md border border-brand-red py-2 text-xs font-bold text-brand-red hover:bg-white">
+              Contact Support
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      {/* Overlay behind mobile drawer */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          className="fixed inset-0 z-40 bg-black/30 lg:hidden"
+        />
+      )}
+
       {/* Main column */}
       <div className="flex min-h-screen flex-1 flex-col">
         {/* Topbar */}
         <header className="flex h-[68px] items-center justify-between gap-4 border-b border-slate-100 bg-white px-6">
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="rounded-md p-1.5 text-slate-500 hover:bg-slate-50 lg:hidden"
+            aria-label="Open menu"
+          >
+            <Menu size={22} />
+          </button>
+
           <div className="relative hidden max-w-md flex-1 mx-auto sm:block">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input

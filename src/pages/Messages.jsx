@@ -2,7 +2,7 @@
 import { useState } from "react";
 import {
   Search, ChevronRight, SlidersHorizontal, Phone, Video, Info,
-  Paperclip, Smile, Image as ImageIcon, Send, Archive, ThumbsUp,
+  Paperclip, Smile, Image as ImageIcon, Send, Archive, ThumbsUp, ArrowLeft,
 } from "lucide-react";
 import { useMessages } from "../context/MessagesContext";
 
@@ -16,13 +16,15 @@ const MESSAGES = [
 
 export default function UserMessages() {
   const { conversations, unreadCount, markAsRead } = useMessages();
-  const [activeId, setActiveId] = useState(conversations[0]?.id);
+  const [activeId, setActiveId] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [mobileView, setMobileView] = useState("list"); // "list" | "chat"
   const active = conversations.find((c) => c.id === activeId);
 
   function handleSelect(id) {
     setActiveId(id);
     markAsRead(id);
+    setMobileView("chat");
   }
 
   const visibleConversations =
@@ -34,10 +36,20 @@ export default function UserMessages() {
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-6 py-6">
         {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-sm text-gray-400">
+          <span className="hover:text-red-500">Home</span>
+          <ChevronRight className="h-3.5 w-3.5" />
+          <span className="font-semibold text-slate-700">Messages</span>
+        </div>
+
         {/* Panel */}
         <div className="mt-1 grid grid-cols-1 gap-4 lg:grid-cols-[380px_1fr]">
           {/* Conversation list */}
-          <div className="flex flex-col rounded-2xl border border-gray-100 bg-white shadow-sm">
+          <div
+            className={`flex-col rounded-2xl border border-gray-100 bg-white shadow-sm ${
+              mobileView === "list" ? "flex" : "hidden"
+            } lg:flex`}
+          >
             <div className="flex items-center gap-2 p-4">
               <div className="relative flex-1">
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -108,13 +120,24 @@ export default function UserMessages() {
           </div>
 
           {/* Chat panel */}
-          {active && (
-            <div className="flex flex-col rounded-2xl border border-gray-100 bg-white shadow-sm">
+          {active ? (
+            <div
+              className={`flex-col rounded-2xl border border-gray-100 bg-white shadow-sm ${
+                mobileView === "chat" ? "flex" : "hidden"
+              } lg:flex`}
+            >
               <div className="flex items-center justify-between border-b border-gray-100 p-4">
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 items-center gap-3">
+                  <button
+                    onClick={() => setMobileView("list")}
+                    className="rounded-lg p-1.5 text-slate-500 hover:bg-gray-50 lg:hidden"
+                    aria-label="Back to conversations"
+                  >
+                    <ArrowLeft className="h-5 w-5" />
+                  </button>
                   <Avatar c={active} size="h-11 w-11" />
-                  <div>
-                    <p className="font-bold text-slate-900">{active.name}</p>
+                  <div className="min-w-0">
+                    <p className="truncate font-bold text-slate-900">{active.name}</p>
                     {active.online && (
                       <p className="flex items-center gap-1.5 text-xs text-green-600">
                         <span className="h-2 w-2 rounded-full bg-green-500" />
@@ -123,7 +146,7 @@ export default function UserMessages() {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center gap-4 text-red-500">
+                <div className="flex shrink-0 items-center gap-4 text-red-500">
                   <button aria-label="Call"><Phone className="h-5 w-5" /></button>
                   <button aria-label="Video call"><Video className="h-5 w-5" /></button>
                   <button className="text-gray-400" aria-label="Info"><Info className="h-5 w-5" /></button>
@@ -166,6 +189,10 @@ export default function UserMessages() {
                 </button>
               </div>
             </div>
+          ) : (
+            <div className="hidden items-center justify-center rounded-2xl border border-gray-100 bg-white p-10 text-sm text-gray-400 shadow-sm lg:flex">
+              Select a conversation to start chatting
+            </div>
           )}
         </div>
       </div>
@@ -198,7 +225,7 @@ function Bubble({ m }) {
   const isMe = m.from === "me";
   return (
     <div className={`flex ${isMe ? "justify-end" : "justify-start"} py-1.5`}>
-      <div className={`flex max-w-[70%] items-end gap-2 ${isMe ? "flex-row-reverse" : ""}`}>
+      <div className={`flex max-w-[85%] items-end gap-2 sm:max-w-[70%] ${isMe ? "flex-row-reverse" : ""}`}>
         {!isMe && (
           <img
             src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=60&h=60&fit=crop"

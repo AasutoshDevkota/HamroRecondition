@@ -15,6 +15,8 @@ import {
   MapPin,
   CalendarCheck,
   ChevronDown,
+  ArrowLeft,
+  Info,
 } from "lucide-react";
 
 const AVATAR_COLORS = {
@@ -165,6 +167,7 @@ export default function Messages() {
   const [activeId, setActiveId] = useState(CONVERSATIONS[0].id);
   const [search, setSearch] = useState("");
   const [draft, setDraft] = useState("");
+  const [mobileView, setMobileView] = useState("list"); // "list" | "chat" | "details"
   const scrollRef = useRef(null);
 
   const active = conversations.find((c) => c.id === activeId);
@@ -180,6 +183,7 @@ export default function Messages() {
   const openConversation = (id) => {
     setActiveId(id);
     setConversations((prev) => prev.map((c) => (c.id === id ? { ...c, unread: 0 } : c)));
+    setMobileView("chat");
   };
 
   const sendMessage = () => {
@@ -219,14 +223,18 @@ export default function Messages() {
           </button>
           <button className="flex items-center gap-2 rounded-lg bg-brand-red px-4 py-2.5 text-sm font-bold text-white hover:bg-red-600">
             <SquarePen size={15} />
-            New Message
+            <span className="hidden sm:inline">New Message</span>
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[300px_1fr_300px]" style={{ height: "calc(100vh - 190px)" }}>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_1fr] lg:h-[calc(100vh-190px)] xl:grid-cols-[300px_1fr_300px]">
         {/* Conversations list */}
-        <div className="card flex flex-col overflow-hidden">
+        <div
+          className={`card flex-col overflow-hidden ${
+            mobileView === "list" ? "flex" : "hidden"
+          } lg:flex`}
+        >
           <div className="border-b border-slate-100 p-4">
             <h3 className="mb-3 text-base font-bold text-slate-900">Conversations</h3>
             <div className="relative">
@@ -240,7 +248,7 @@ export default function Messages() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto">
+          <div className="max-h-[60vh] flex-1 overflow-y-auto lg:max-h-none">
             {filteredConversations.map((c) => (
               <button
                 key={c.id}
@@ -272,30 +280,48 @@ export default function Messages() {
         </div>
 
         {/* Chat thread */}
-        <div className="card flex flex-col overflow-hidden">
+        <div
+          className={`card flex-col overflow-hidden ${
+            mobileView === "chat" ? "flex" : "hidden"
+          } lg:flex`}
+        >
           {active ? (
             <>
-              <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3.5">
-                <div className="flex items-center gap-3">
-                  <span className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${AVATAR_COLORS[active.initials] || "bg-slate-200 text-slate-600"}`}>
+              <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3.5 sm:px-5">
+                <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+                  <button
+                    onClick={() => setMobileView("list")}
+                    className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-50 lg:hidden"
+                    aria-label="Back to conversations"
+                  >
+                    <ArrowLeft size={18} />
+                  </button>
+                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold ${AVATAR_COLORS[active.initials] || "bg-slate-200 text-slate-600"}`}>
                     {active.initials}
                   </span>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">{active.name}</p>
-                    <p className="text-xs text-slate-400">{active.phone}</p>
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-bold text-slate-900">{active.name}</p>
+                    <p className="truncate text-xs text-slate-400">{active.phone}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex shrink-0 items-center gap-1">
                   <button className="rounded-lg p-2 text-slate-400 hover:bg-slate-50">
                     <Phone size={17} />
                   </button>
-                  <button className="rounded-lg p-2 text-slate-400 hover:bg-slate-50">
+                  <button
+                    onClick={() => setMobileView("details")}
+                    className="rounded-lg p-2 text-slate-400 hover:bg-slate-50 xl:hidden"
+                    aria-label="Conversation details"
+                  >
+                    <Info size={17} />
+                  </button>
+                  <button className="hidden rounded-lg p-2 text-slate-400 hover:bg-slate-50 xl:block">
                     <MoreVertical size={17} />
                   </button>
                 </div>
               </div>
 
-              <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-5 py-5">
+              <div ref={scrollRef} className="max-h-[55vh] flex-1 space-y-4 overflow-y-auto px-4 py-5 sm:px-5 lg:max-h-none">
                 {active.messages.map((m, i) =>
                   m.day ? (
                     <div key={i} className="flex justify-center">
@@ -309,7 +335,7 @@ export default function Messages() {
                         </span>
                       )}
                       <div
-                        className={`max-w-[70%] rounded-2xl px-4 py-2.5 text-sm ${
+                        className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm sm:max-w-[70%] ${
                           m.from === "me" ? "rounded-br-sm bg-red-50 text-slate-800" : "rounded-bl-sm bg-slate-100 text-slate-800"
                         }`}
                       >
@@ -324,12 +350,12 @@ export default function Messages() {
                 )}
               </div>
 
-              <div className="border-t border-slate-100 p-4">
-                <div className="flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2">
-                  <button className="rounded-md p-1.5 text-slate-400 hover:bg-slate-50">
+              <div className="border-t border-slate-100 p-3 sm:p-4">
+                <div className="flex items-center gap-1.5 rounded-xl border border-slate-200 px-2.5 py-2 sm:gap-2 sm:px-3">
+                  <button className="hidden rounded-md p-1.5 text-slate-400 hover:bg-slate-50 sm:block">
                     <Paperclip size={17} />
                   </button>
-                  <button className="rounded-md p-1.5 text-slate-400 hover:bg-slate-50">
+                  <button className="hidden rounded-md p-1.5 text-slate-400 hover:bg-slate-50 sm:block">
                     <ImageIcon size={17} />
                   </button>
                   <input
@@ -337,14 +363,14 @@ export default function Messages() {
                     onChange={(e) => setDraft(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                     placeholder="Type your message..."
-                    className="flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400"
+                    className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400"
                   />
                   <button
                     onClick={sendMessage}
-                    className="flex items-center gap-1.5 rounded-lg bg-brand-red px-4 py-2 text-sm font-bold text-white hover:bg-red-600"
+                    className="flex shrink-0 items-center gap-1.5 rounded-lg bg-brand-red px-3 py-2 text-sm font-bold text-white hover:bg-red-600 sm:px-4"
                   >
                     <Send size={14} />
-                    Send
+                    <span className="hidden sm:inline">Send</span>
                   </button>
                 </div>
               </div>
@@ -357,10 +383,23 @@ export default function Messages() {
         </div>
 
         {/* Conversation details */}
-        <div className="card overflow-y-auto p-5">
+        <div
+          className={`card overflow-y-auto p-5 ${
+            mobileView === "details" ? "block" : "hidden"
+          } xl:block`}
+        >
           {active && (
             <>
-              <h3 className="mb-4 text-sm font-bold text-slate-900">Conversation Details</h3>
+              <div className="mb-4 flex items-center justify-between">
+                <h3 className="text-sm font-bold text-slate-900">Conversation Details</h3>
+                <button
+                  onClick={() => setMobileView("chat")}
+                  className="flex items-center gap-1 text-xs font-semibold text-brand-red xl:hidden"
+                >
+                  <ArrowLeft size={14} />
+                  Back
+                </button>
+              </div>
 
               <div className="flex items-center gap-3">
                 <span className={`flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold ${AVATAR_COLORS[active.initials] || "bg-slate-200 text-slate-600"}`}>

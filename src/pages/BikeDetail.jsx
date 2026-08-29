@@ -96,7 +96,64 @@ export default function BikeDetail({ onNotify }) {
               ))}
             </div>
           )}
+          <div className="rounded-2xl mt-3 border border-gray-100 p-6 shadow-sm">
+            <div className="flex items-center justify-between">
+              <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-brand-red">
+                {bike.tag}
+              </span>
+              <button onClick={() => setSaved((s) => !s)} className="flex items-center gap-1 text-sm text-gray-500">
+                <Heart size={15} className={saved ? "fill-brand-red text-brand-red" : ""} />
+                Save
+              </button>
+            </div>
 
+            <h1 className="mt-4 text-2xl font-extrabold text-slate-900">{bike.name}</h1>
+            <p className="mt-1 text-sm text-gray-500">
+              {bike.year} • {bike.km} • {bike.fuelType} • {bike.transmission}
+            </p>
+
+            <p className="mt-3 text-2xl font-extrabold text-brand-red">{bike.price}</p>
+            <p className="mt-1 flex items-center gap-1 text-sm text-gray-500">
+              <MapPin size={14} />
+              {bike.city}, Nepal
+            </p>
+
+            <div className="mt-4 flex items-start gap-3 rounded-xl bg-red-50 p-4">
+              <Tag size={18} className="mt-0.5 shrink-0 text-brand-red" />
+              <div>
+                <p className="text-sm font-bold text-slate-900">Get Best Price</p>
+                <p className="text-xs text-gray-500">
+                  This bike is priced fairly. Negotiate with the seller for even better deal!
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <button
+                onClick={() => onNotify?.("Seller contact revealed")}
+                className="flex items-center justify-center gap-2 rounded-md bg-brand-red py-3 text-sm font-bold text-white transition-colors hover:opacity-90"
+              >
+                <Phone size={15} />
+                Contact Seller
+              </button>
+              <button
+                onClick={() => onNotify?.("Chat opened with seller")}
+                className="flex items-center justify-center gap-2 rounded-md border border-gray-200 py-3 text-sm font-bold text-slate-800 transition-colors hover:bg-gray-50"
+              >
+                <MessageCircle size={15} />
+                <a href="./messages">
+                Chat with Seller
+                </a>
+              </button>
+            </div>
+
+            {bike.listingId && (
+              <div className="mt-4 flex justify-between text-xs text-gray-400">
+                <span>Listing ID: {bike.listingId}</span>
+                <span>Posted on {bike.postedOn}</span>
+              </div>
+            )}
+          </div>
           <div className="mt-8 rounded-2xl border border-gray-100 p-6 shadow-sm">
             <h2 className="border-l-4 border-brand-red pl-3 text-lg font-bold text-slate-900">
               BIKE SPECIFICATIONS
@@ -172,7 +229,7 @@ export default function BikeDetail({ onNotify }) {
         </div>
 
         <div>
-          <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+          {/* <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
             <div className="flex items-center justify-between">
               <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-brand-red">
                 {bike.tag}
@@ -229,7 +286,7 @@ export default function BikeDetail({ onNotify }) {
                 <span>Posted on {bike.postedOn}</span>
               </div>
             )}
-          </div>
+          </div> */}
 
           {bike.seller && (
             <div className="mt-6 rounded-2xl border border-gray-100 p-6 shadow-sm">
