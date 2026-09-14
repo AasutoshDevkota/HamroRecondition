@@ -40,6 +40,7 @@ function PublicSite({ notify }) {
         <Route path="/messages" element={<UserMessages />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+     <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <WhatsAppButton />
@@ -74,10 +75,10 @@ export default function App() {
         </Route>
 
         <Route path="/*" element={<PublicSite notify={notify} />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Toast message={toast} />
     </div>
   );
 }
+ 
