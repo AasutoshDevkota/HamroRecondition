@@ -22,6 +22,7 @@ import Messages from "./admin/pages/Messages";
 import Settings from "./admin/pages/Settings";
 import Users from "./admin/pages/Users";
 import Reports from "./admin/pages/Reports";
+import NotFound from "./pages/NotFound";
 import { useState } from "react";
 
 function PublicSite({ notify }) {
@@ -73,6 +74,7 @@ export default function App() {
         </Route>
 
         <Route path="/*" element={<PublicSite notify={notify} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Toast message={toast} />
