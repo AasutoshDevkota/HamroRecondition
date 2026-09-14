@@ -88,18 +88,18 @@ export default function Hero({ onBrowse, onSell }) {
             {/* CTAs */}
             <div className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
               <button
-                onClick={onBrowse}
-                className="flex items-center gap-2 rounded-full bg-brand-red px-7 py-3.5 text-[13px] font-bold tracking-wide text-white shadow-lg transition hover:bg-brand-red/80"
+               onClick={onBrowse}
+               className="flex items-center justify-center gap-1.5 rounded-full bg-brand-red px-3 py-3 text-[11px] font-bold tracking-wide text-white shadow-lg transition hover:bg-brand-red/80 sm:justify-start sm:gap-2 sm:px-7 sm:py-3.5 sm:text-[13px]"
               >
-                <Search className="h-4 w-4" strokeWidth={2.5} />
-                BROWSE BIKES
+              <Search className="h-4 w-4 shrink-0" strokeWidth={2.5} />
+              BROWSE BIKES
               </button>
               <button
-                onClick={onSell}
-                className="flex items-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-3.5 text-[13px] font-bold tracking-wide text-brand-ink transition hover:border-slate-600"
+              onClick={onSell}
+              className="flex items-center justify-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-3 text-[11px] font-bold tracking-wide text-brand-ink transition hover:border-slate-600 sm:justify-start sm:gap-2 sm:px-7 sm:py-3.5 sm:text-[13px]"
               >
-                <Plus className="h-4 w-4" strokeWidth={2.5} />
-                SELL YOUR BIKE
+              <Plus className="h-4 w-4 shrink-0" strokeWidth={2.5} />
+              SELL YOUR BIKE
               </button>
             </div>
 
