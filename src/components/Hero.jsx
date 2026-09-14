@@ -86,7 +86,7 @@ export default function Hero({ onBrowse, onSell }) {
             </p>
 
             {/* CTAs */}
-            <div className="mt-7 flex flex-wrap items-center gap-4">
+            <div className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
               <button
                 onClick={onBrowse}
                 className="flex items-center gap-2 rounded-full bg-brand-red px-7 py-3.5 text-[13px] font-bold tracking-wide text-white shadow-lg transition hover:bg-brand-red/80"
