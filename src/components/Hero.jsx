@@ -135,7 +135,7 @@ export default function Hero({ onBrowse, onSell }) {
           </div>
 
                   {/* Feature strip */}
-<div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 rounded-2xl border border-slate-200 bg-white/95 px-6 py-6 backdrop-blur-sm sm:gap-6 lg:grid-cols-4 lg:gap-4">
+          <div className="mt-8 hidden grid-cols-2 gap-x-4 gap-y-6 rounded-2xl border border-slate-200 bg-white/95 px-6 py-6 backdrop-blur-sm sm:grid sm:gap-6 lg:grid-cols-4 lg:gap-4">
             {FEATURES.map(({ icon: Icon, title, subtitle }) => (
               <div key={title} className="flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-red/0 text-brand-red">
