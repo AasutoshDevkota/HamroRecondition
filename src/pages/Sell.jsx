@@ -133,42 +133,48 @@ export default function Sell() {
       </section>
 
       {/* How it works */}
-      <section className="container-site py-12 text-center">
-        <p className="text-xs font-bold tracking-wide text-red-500">
-          HOW IT WORKS
-        </p>
-        <h2 className="mt-2 text-3xl font-extrabold text-slate-900">
-          Simple Steps to Sell Your Bike
-        </h2>
-        <div className="mx-auto mt-3 h-1 w-16 bg-red-500" />
+<section className="container-site py-12 text-center">
+  <p className="text-xs font-bold tracking-wide text-red-500">
+    HOW IT WORKS
+  </p>
 
-        <div className="relative mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <StepCard
-            step={1}
-            icon={<FileEdit className="h-7 w-7 text-red-500" />}
-            title="List Your Bike"
-            desc="Fill in your bike details and upload photos in minutes."
-          />
-          <StepCard
-            step={2}
-            icon={<ShieldIcon className="h-7 w-7 text-red-500" />}
-            title="We Inspect"
-            desc="Our experts inspect your bike for quality and condition."
-          />
-          <StepCard
-            step={3}
-            icon={<Tag className="h-7 w-7 text-red-500" />}
-            title="Get Best Offer"
-            desc="Receive the best market price for your bike."
-          />
-          <StepCard
-            step={4}
-            icon={<HandCoins className="h-7 w-7 text-red-500" />}
-            title="Sell & Get Paid"
-            desc="Complete the sale and get paid instantly."
-          />
-        </div>
-      </section>
+  <h2 className="mt-2 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">
+    Simple Steps to Sell
+    <br className="sm:hidden" /> Your Bike
+  </h2>
+
+  <div className="mx-auto mt-4 h-1 w-16 bg-red-500" />
+
+  <div className="relative mt-14 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 lg:gap-8">
+    <StepCard
+      step={1}
+      icon={<FileEdit className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="List Your Bike"
+      desc="Fill in your bike details and upload photos in minutes."
+    />
+
+    <StepCard
+      step={2}
+      icon={<ShieldIcon className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="We Inspect"
+      desc="Our experts inspect your bike for quality and condition."
+    />
+
+    <StepCard
+      step={3}
+      icon={<Tag className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="Get Best Offer"
+      desc="Receive the best market price for your bike."
+    />
+
+    <StepCard
+      step={4}
+      icon={<HandCoins className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="Sell & Get Paid"
+      desc="Complete the sale and get paid instantly."
+    />
+  </div>
+</section>
 
       {/* Why sell with us */}
       <section className="container-site pb-16">
