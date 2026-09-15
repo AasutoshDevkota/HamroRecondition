@@ -177,34 +177,45 @@ export default function Sell() {
 </section>
 
       {/* Why sell with us */}
-      <section className="container-site pb-16">
-        <p className="text-center text-xs font-bold tracking-wide text-red-500">
-          WHY SELL WITH US?
-        </p>
+<section className="container-site pb-16">
+  <p className="text-center text-xs font-bold tracking-wide text-red-500">
+    WHY SELL WITH US?
+  </p>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 rounded-2xl border border-gray-100 bg-white p-10 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
-          <Feature
-            icon={<ShieldCheck className="h-7 w-7 text-red-500" />}
-            title="Secure & Safe"
-            desc="Your safety and security is our top priority."
-          />
-          <Feature
-            icon={<Tag className="h-7 w-7 text-red-500" />}
-            title="Best Market Price"
-            desc="We help you get the best value for your bike."
-          />
-          <Feature
-            icon={<Users className="h-7 w-7 text-red-500" />}
-            title="Verified Buyers"
-            desc="Connect with genuine and serious buyers."
-          />
-          <Feature
-            icon={<Headphones className="h-7 w-7 text-red-500" />}
-            title="End-to-End Support"
-            desc="From listing to payment, we support you all the way."
-          />
-        </div>
-      </section>
+  <h2 className="mt-2 text-center text-2xl font-extrabold leading-tight text-slate-900 sm:text-3xl">
+    Why Choose Us to Sell Your Bike?
+  </h2>
+
+  <div className="mx-auto mt-3 h-1 w-16 bg-red-500" />
+
+  <div className="mt-10 grid grid-cols-2 gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm sm:gap-6 sm:p-6 lg:grid-cols-4 lg:gap-8 lg:p-10">
+    
+    <Feature
+      icon={<ShieldCheck className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="Secure & Safe"
+      desc="Your safety and security is our top priority."
+    />
+
+    <Feature
+      icon={<Tag className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="Best Market Price"
+      desc="We help you get the best value for your bike."
+    />
+
+    <Feature
+      icon={<Users className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="Verified Buyers"
+      desc="Connect with genuine and serious buyers."
+    />
+
+    <Feature
+      icon={<Headphones className="h-6 w-6 text-red-500 sm:h-7 sm:w-7" />}
+      title="End-to-End Support"
+      desc="From listing to payment, we support you all the way."
+    />
+
+  </div>
+</section>
 
       {/* CTA strip */}
       <section className="container-site pb-16">
@@ -296,12 +307,21 @@ function StepCard({ step, icon, title, desc }) {
 
 function Feature({ icon, title, desc }) {
   return (
-    <div className="text-center">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
+    <div className="flex flex-col items-center text-center">
+      {/* Icon */}
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-50 sm:h-14 sm:w-14">
         {icon}
       </div>
-      <p className="mt-3 font-bold text-slate-900">{title}</p>
-      <p className="mt-1 text-sm text-gray-500">{desc}</p>
+
+      {/* Title */}
+      <p className="mt-3 text-sm font-extrabold leading-tight text-slate-900 sm:text-base">
+        {title}
+      </p>
+
+      {/* Description */}
+      <p className="mt-1 text-xs leading-5 text-gray-500 sm:text-sm sm:leading-6">
+        {desc}
+      </p>
     </div>
   );
 }
